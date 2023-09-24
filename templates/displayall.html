@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tampilkan Semua Data Karyawan</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #ffd323;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-button-display">Kembali ke Home</a>
+    <h1>Semua Data Karyawan</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Karyawan</th>
+                <th>Nama Karyawan</th>
+                <th>Cabang BCA</th>
+                <th>Jabatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for karyawan in karyawan_list %}
+            <tr>
+                <td>{{ karyawan.id_karyawan }}</td>
+                <td>{{ karyawan.nama_karyawan }}</td>
+                <td>{{ karyawan.cabang_bca }}</td>
+                <td>{{ karyawan.jabatan }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Data Karyawan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="blue-theme">
+    <h2>Input Data Karyawan Baru</h2>
+    <div class="form-container">
+        <form action="/input" method="post">
+            <label for="nama_karyawan">Nama Karyawan:</label>
+            <input type="text" name="nama_karyawan" id="nama_karyawan" placeholder="Masukkan nama karyawan">
+            <br>
+            <label for="cabang_bca">Cabang BCA:</label>
+            <input type="text" name="cabang_bca" id="cabang_bca" placeholder="Masukkan cabang BCA">
+            <br>
+            <label for="jabatan">Jabatan:</label>
+            <input type="text" name="jabatan" id="jabatan" placeholder="Masukkan jabatan karyawan">
+            <br>
+            <input type="submit" value="Tambahkan">
+        </form>
+        <a href="/" class="home-button yellow-button">Kembali ke Home</a>
+    </div>
+</body>
+</html>

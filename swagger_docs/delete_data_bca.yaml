@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Ambil Semua Data Karyawan BCA
+  version: 1.0.0
+tags:
+  - name: Daftar API
+parameters:
+  - name: id_karyawan
+    in: path
+    description: ID karyawan yang akan dihapus
+    required: true
+    type: integer
+responses:
+  200:
+    description: Data karyawan berhasil dihapus
+  404:
+    description: Data tidak ditemukan

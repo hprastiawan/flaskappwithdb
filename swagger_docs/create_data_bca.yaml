@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Ambil Semua Data Karyawan BCA
+  version: 1.0.0
+tags:
+  - name: Daftar API
+parameters:
+  - in: body
+    name: body
+    description: Data karyawan yang akan ditambahkan
+    required: true
+    schema:
+      $ref: '#/definitions/Karyawan'
+responses:
+  201:
+    description: Data karyawan berhasil ditambahkan
+    schema:
+      $ref: '#/definitions/Karyawan'
+definitions:
+  Karyawan:
+    type: object
+    properties:
+      nama_karyawan:
+        type: string
+      cabang_bca:
+        type: string
+      jabatan:
+        type: string
+    required:
+      - nama_karyawan
+      - cabang_bca
+      - jabatan

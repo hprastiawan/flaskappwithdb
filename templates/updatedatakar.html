@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Update Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="purple-theme">
+
+    <h2>Search Data to Update</h2>
+
+    <div class="form-container">
+        <form action="/updatedata" method="post">
+            <label class="field-label" for="nama_karyawan">Nama Karyawan:</label>
+            <input type="text" id="nama_karyawan" name="nama_karyawan" placeholder="Enter name to search" required>
+            <input type="submit" value="Search" class="update-button">
+        </form>
+        <a href="/" class="home-button">Kembali ke Home</a>
+    </div>
+    
+    {% if data_list %}
+    <h3>Data Found:</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nama Karyawan</th>
+            <th>Cabang BCA</th>
+            <th>Jabatan</th>
+            <th>Action</th>
+        </tr>
+        {% for data in data_list %}
+        <tr>
+            <td>{{ data.id_karyawan }}</td>
+            <td>{{ data.nama_karyawan }}</td>
+            <td>{{ data.cabang_bca }}</td>
+            <td>{{ data.jabatan }}</td>
+            <td>
+                <button onclick="showUpdateForm({{ data.id_karyawan }}, '{{ data.nama_karyawan }}', '{{ data.cabang_bca }}', '{{ data.jabatan }}')" class="update-button">Update</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <div id="updateForm" style="display:none;">
+        <h3>Update Data:</h3>
+        <form action="/update_karyawan" method="post">
+            <input type="hidden" id="updateId" name="id_karyawan">
+            <label class="field-label" for="updateNama">Nama Karyawan:</label>
+            <input type="text" id="updateNama" name="nama_karyawan" placeholder="New Name" required>
+            <label class="field-label" for="updateCabang">Cabang BCA:</label>
+            <input type="text" id="updateCabang" name="cabang_bca" placeholder="New Cabang BCA" required>
+            <label class="field-label" for="updateJabatan">Jabatan:</label>
+            <input type="text" id="updateJabatan" name="jabatan" placeholder="New Jabatan" required>
+            <input type="submit" value="Submit" class="update-button">
+        </form>
+    </div>
+    
+    <script>
+        function showUpdateForm(id, nama_karyawan, cabang_bca, jabatan) {
+            document.getElementById('updateId').value = id;
+            document.getElementById('updateNama').value = nama_karyawan;
+            document.getElementById('updateCabang').value = cabang_bca;
+            document.getElementById('updateJabatan').value = jabatan;
+            document.getElementById('updateForm').style.display = 'block';
+        }
+    </script>
+    
+    {% else %}
+    <p>Tidak ada data yang ditemukan untuk nama karyawan yang diberikan.</p>
+    {% endif %}
+    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghapusan Data Karyawan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="red-theme">
+    <h2>Penghapusan Data Karyawan</h2>
+    <div class="form-container">
+        <form action="/delete_karyawan" method="post">
+            <label class="field-label" for="nama_karyawan">Nama Karyawan:</label>
+            <input type="text" name="nama_karyawan" id="nama_karyawan" placeholder="Masukkan nama karyawan yang ingin dicari" required>
+            <br>
+            <input type="submit" value="Cari" class="delete-button">
+        </form>
+        <a href="/" class="home-button">Kembali ke Home</a>
+    </div>
+    
+    {% if data_list %}
+    <h3>Data Ditemukan:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Karyawan</th>
+                <th>Cabang BCA</th>
+                <th>Jabatan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data_list %}
+            <tr>
+                <td>{{ item.id_karyawan }}</td>
+                <td>{{ item.nama_karyawan }}</td>
+                <td>{{ item.cabang_bca }}</td>
+                <td>{{ item.jabatan }}</td>
+                <td>
+                    <button onclick="confirmDelete('{{ item.nama_karyawan }}', '{{ item.id_karyawan }}')" class="delete-button-red">Hapus</button>
+                </td>                           
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <script>
+        function confirmDelete(nama_karyawan, id_karyawan) {
+            const isConfirmed = confirm(`Apakah Anda yakin ingin menghapus data ${nama_karyawan}?`);
+            if (isConfirmed) {
+                fetch(`/karyawan/${id_karyawan}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message.includes("berhasil dihapus")) {
+                        alert("Data berhasil dihapus!");
+                        location.reload();
+                    } else {
+                        alert("Terjadi kesalahan saat menghapus data. Silakan coba lagi.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Terjadi kesalahan saat menghapus data. Silakan coba lagi.");
+                });
+            }
+        }
+    </script>        
+</body>
+</html>
