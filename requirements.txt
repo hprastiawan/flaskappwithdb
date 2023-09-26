@@ -41,3 +41,5 @@ template-render==0.1.0
 typing_extensions==4.8.0
 urllib3==2.0.4
 Werkzeug==2.2.3
+psycopg2
+mysql-connector-python
