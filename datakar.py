@@ -6,11 +6,9 @@ import os
 
 app = Flask(__name__)
 
-# Lokasi database
-DATABASE_PATH = '/Users/dspecialone/Documents/Hactive8/H8 - Python/flaskh8/datakarbca/karbca.db'
-
 # Konfigurasi database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + DATABASE_PATH
+app.config['SQLALCHEMY_ECH0'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:m1B14fwDsBDtwMYS7x12@containers-us-west-167.railway.app:7090/railway'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Konfigurasi Swagger
