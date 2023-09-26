@@ -40,12 +40,12 @@ class Karyawan(db.Model):
     jabatan = db.Column(db.String(100), nullable=False)
 
 # @app.before_first_request
-#def create_tables():
- #   db.create_all()
+# def create_tables():
+# db.create_all()
 
-#@app.route('/')
-#def index():
-#    return render_template('index.html')
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/karyawan', methods=['POST'])
 @swag_from('swagger_docs/create_data_bca.yaml')
