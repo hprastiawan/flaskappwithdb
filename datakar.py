@@ -200,4 +200,4 @@ def delete_karyawan_ui():
         return render_template('deletedata.html', data_list=data_list)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5025)
+    app.run(debug=True)
